@@ -8,25 +8,23 @@ generate_btn.addEventListener("click",()=>{
     )
     Result.style.display="none"
     tickers.innerText = "generating..."
+    
 } )
 
-API_URL = "https://uselessfacts.jsph.pl/api/v2/facts/random"
+/*-------------------------Ai_generated_code-------------------------*/
+import {GoogleGenAI} from "@google/genai";
+const ai = new GoogleGenAI({
+    apiKey: 'AIzaSyChoUxNuZkQmMODOjx27DkxMEAPFm88JtA',
+    dangerouslyAllowBrowser: true,
+});
+console.log(ai.apiKey);
 
-setTimeout(() => {
-    Api_call(API_URL)
-}, 3000);
-
-async function Api_call(URL) {
-   const data =  await fetch(URL)
-    console.log(URL)
-    console.log(data)
-    
-    try{
-        let res = await data.json()
-        console.log(res.text)
-        tickers.innerText = res.text
-    }
-    catch(err){
-        console.log(err)
-    }
+async function main() {
+  const response = await ai.models.generateContent({
+    model: "gemini-3-flash-preview",
+    contents: "give me a financial advice for this month , here is the ticker of the stock I am interested in : ABAT",
+  });
+  console.log(response.text);
 }
+
+await main();
